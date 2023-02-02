@@ -1,4 +1,4 @@
-def gamma(input_list=[1,2,3,4], fn_list=[lambda i : i, lambda i:i+1], title_width=25):
+def title(input_list=[1,2,3,4], fn_list=[lambda i : i, lambda i:i+1], title_width=25):
     def delimeter(value):
         return title_width-len(str(value))
     titles = ["id"]
@@ -9,7 +9,12 @@ def gamma(input_list=[1,2,3,4], fn_list=[lambda i : i, lambda i:i+1], title_widt
         #
         if input_title=="":
             if len(fn_list)>len(titles)-1:
-                titles+=["#"]*(len(fn_list)+1-len(titles))
+
+                ##
+                for fn in fn_list:
+                    titles+=[str(fn.__name__)]
+                ##
+                # titles+=["#"]*(len(fn_list)+1-len(titles))
             #
             print("titles: ",end="")
             [print(str(t)+"/", end="") for t in titles]
@@ -45,4 +50,4 @@ def gamma(input_list=[1,2,3,4], fn_list=[lambda i : i, lambda i:i+1], title_widt
 lambda pr: print()
 
 if __name__ == "__main__":
-    gamma()
+    title()
