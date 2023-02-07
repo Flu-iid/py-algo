@@ -13,6 +13,14 @@
       "justMyCode": true
     },
     {
+      "name": "py_x",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "console": "externalTerminal",
+      "justMyCode": true
+    },
+    {
       "type": "node",
       "request": "launch",
       "name": "JS_Launch",

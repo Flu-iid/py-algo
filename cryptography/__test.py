@@ -6,4 +6,14 @@ import string
 # print(list(zip(s, s_list)), len(s), len(s_list))
 
 
-print("\t".isascii())
+# print("\t".isascii())
+
+
+# from string import printable
+
+# with open("./cryptography/simpleRot/output.txt", "w") as fin:
+#     fin.write("[")
+#     for i in printable:
+#         fin.write(i)
+#         fin.write(", ")
+#     fin.write("]")
