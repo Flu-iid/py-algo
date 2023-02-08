@@ -1,18 +1,8 @@
 from time import time
 import os
-# from string import printable
-printable = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
-             'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', ' ', '	', '\n', '\r', '', '']
-
-
-# read config if availabe, if not make one
-# with open("config.txt", "r") as fin:
-#     fin.readlines()
-
-config = 13
-
-
-# add utc in between and fill in the gaps with the same result
+from string import printable, digits
+# printable = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+#              'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', ' ', '	', '\n', '\r', '', '']
 
 
 def ascii_printable(s):
@@ -38,10 +28,35 @@ def number_to_base(n, b):
     return digits[::-1]
 
 
-def encrypt(input_string, rot=config):
+def encrypt(input_string, rot=13):
     """
     add rotation to ascii number
     """
+    if os.path.exists("./config.txt"):
+        with open("config.txt", "r") as fin:
+            content = fin.read()
+            key = content.find("rot=")
+            if key >= 0:
+                value = content[4:].strip()
+                rot = value
+    else:
+        while True:
+            print("no config file found, do you want to make a key?(Y/n)")
+            key_answer_input = input(">").lower()
+            if key_answer_input in ["yes", "y", "yeah"]:
+                user_input = input("enter rotation integer >").lower()
+                if user_input not in digits:
+                    print("bad input. try again.")
+                else:
+                    rot = int(user_input)
+                    with open("config.txt", "w") as fin:
+                        fin.write(f"rot={rot}")
+                        break
+            elif key_answer_input in ["no", "n", "nope"]:
+                print("ok, try to remember it then!")
+                break
+            else:
+                print("bad input. try again.")
     if ascii_printable(input_string):
         t_data = time()
         rot_list = [(printable.index(c)+rot) % len(printable)
@@ -61,7 +76,5 @@ def encrypt(input_string, rot=config):
 
 # print(encrypt("Arsham Mahdiun"))
 
-with open("output.txt", "a+") as fin:
-    print(fin.readable())
-# print(int("1000", 2))
-# print(number_to_base(8, 2))
+if __name__ == "__main__":
+    pass
