@@ -9,3 +9,4 @@
 #     print(i)
 #     print(eval("string."+i))
 #     print("-------")
+print([4, 3, 2, 1].sort())

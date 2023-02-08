@@ -6,7 +6,7 @@ printable = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd
 
 
 # read config if availabe, if not make one
-# with open("config.txt") as fin:
+# with open("config.txt", "r") as fin:
 #     fin.readlines()
 
 config = 13
