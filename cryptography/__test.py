@@ -17,3 +17,5 @@ import string
 #         fin.write(i)
 #         fin.write(", ")
 #     fin.write("]")
+
+print(ord("ز"))

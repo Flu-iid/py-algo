@@ -1,4 +1,13 @@
-from string import whitespace
+# Python3 code
 
-string_input = [input().split(i) for i in whitespace]
-print(string_input)
+class TrieNode:
+
+    # Trie node class
+    def __init__(self):
+        self.children = [None for _ in range(26)]
+
+        # isEndOfWord is True if node represent the end of the word
+        self.isEndOfWord = False
+
+
+TrieNode
