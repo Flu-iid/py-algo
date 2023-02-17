@@ -33,14 +33,11 @@ def ascii_encrypt(input_string, rot=13):
     """
     add rotation to ascii number
     """
-
     if input_string:
         t_data = time()
         rot_list = [(ord(c)+rot) % len(printable)
                     for c in input_string]
-        encrypt_result = ""
-        delimiter = "☺"
-        spacer = "☻"
+        encrypt_result, delimiter, spacer = "", "☺", "☻"
 
         for r in rot_list:
             r_p = str(r*100/97+1)
@@ -59,44 +56,75 @@ def ascii_encrypt(input_string, rot=13):
         return 0
 
 
-# print(encrypt("Arsham Mahdiun"))
+def user_answer():
+    """
+    yes/no answer check. yes, no, bad = "y", "n", False
+    """
+    key_answer_input = input(">").lower()
+    if key_answer_input in ["yes", "y", "yep", "yeah"]:
+        return "y"
 
+    elif key_answer_input in ["no", "n", "nope", "nah"]:
+        return "n"
+    else:
+        print("bad input. try again.")
+        return False
+
+
+def make_config(message):
+    """
+    make config for costume function
+    """
+    tmp_rot = 13
+    while True:
+        print(message)
+        answer = user_answer()
+        if answer == "y":
+            user_input = input("enter rotation integer >").lower()
+            if user_input not in digits:
+                print("bad input. try again.")
+            else:
+                rot = int(user_input)
+                tmp_rot = rot
+                with open("config.txt", "w") as fin:
+                    fin.write(f"rot={rot}")
+                    break
+        elif answer == "n":
+            print("ok, try to remember it then!")
+            user_input = input("enter rotation integer >").lower()
+            tmp_rot = int(user_input)
+            break
+        else:
+            pass
+    return tmp_rot
+
+
+def encrypt_type(func=ascii_encrypt, rot=13):
+    """
+    run encryption type by user command
+    """
+    print(func(input("data >"), rot))
+    # ask for output save
+
+
+# print(encrypt("Arsham Mahdiun"))
 if __name__ == "__main__":
-    if os.path.exists("./config.txt"):
+    if os.path.exists("config.txt"):
         with open("config.txt", "r") as fin:
             content = fin.read()
             key = content.find("rot=")
             if key >= 0:
                 value = content[4:].strip()
                 if value.isdigit():
-                    data_input = input("data>")
-                    ascii_encrypt(data_input, int(value))
+                    # get encrypt type
+                    encrypt_type(rot=int(value))
                 else:
-                    print("bad config, , do you want to make a key?(Y/n)")
-                    # find better way for this
-
+                    tmp_rot = make_config(
+                        "bad config, do you want to make a key?(Y/n)")
+                    # get encrypt type
+                    encrypt_type(rot=tmp_rot)
     else:
-        tmp_rot = 13
-        while True:
-            print("no config file found, do you want to make a key?(Y/n)")
-            key_answer_input = input(">").lower()
-            if key_answer_input in ["yes", "y", "yeah"]:
-                user_input = input("enter rotation integer >").lower()
-                if user_input not in digits:
-                    print("bad input. try again.")
-                else:
-                    rot = int(user_input)
-                    tmp_rot = rot
-                    with open("config.txt", "w") as fin:
-                        fin.write(f"rot={rot}")
-                        break
-            elif key_answer_input in ["no", "n", "nope"]:
-                print("ok, try to remember it then!")
-                user_input = input("enter rotation integer >").lower()
-                tmp_rot = int(user_input)
-                break
-            else:
-                print("bad input. try again.")
-
-        data_input = input("data>")
-        ascii_encrypt(data_input, rot=tmp_rot)
+        tmp_rot = make_config(
+            "no config file found, do you want to make a key?(Y/n)")
+        # get encrypt type
+        encrypt_type(rot=tmp_rot)
