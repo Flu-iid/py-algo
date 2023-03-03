@@ -1,15 +1,18 @@
-m, s = [int(i) for i in input().split(" ")]
-start, end = 10**(m-1), 10**(m)
+def max_maker(s, m):
+    num_length = m
+    digital_sum = s
+    max_num = ""
+    n = 0
+    if s > m*9 or s < 1:
+        return -1
+    while digital_sum > 0:
+        if digital_sum < 10:
+            max_num += f"{digital_sum}"+(num_length-1)*"0"
+            return max_num
+        else:
+            max_num += "9"
+            num_length -= 1
+            digital_sum -= 9
 
 
-def sum_dig(num):
-    result = 0
-    for i in str(num):
-        result += int(i)
-    return result
-
-
-n = start
-while n < end:
-    print(n, sum_dig(n))
-    n += 1
+print(max_maker(0, 2))
