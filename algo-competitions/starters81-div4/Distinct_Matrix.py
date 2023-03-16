@@ -1,19 +1,11 @@
-# t = int(input())
+t = int(input())
 
-def generateAllBinaryStrings(n, arr, i, result=set()):
-
-    if i == n:
-        result.add("".join(map(str, arr)))
-        return result
-
-    arr[i] = 0
-    generateAllBinaryStrings(n, arr, i + 1, result)
-    arr[i] = 1
-    generateAllBinaryStrings(n, arr, i + 1, result)
-
-
-print(generateAllBinaryStrings(5, [None]*5, 0))
-
-
-# for i in range(t):
-#     n = int(input())
+for _ in range(t):
+    n = int(input())
+    if n == 2:
+        print(-1)
+    for i in range(1, n+1):
+        if i == 2:
+            print("01"+(n-i)*"0")
+        else:
+            print("1"*(i)+(n-i)*"0")
