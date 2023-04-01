@@ -193,10 +193,12 @@ class Node:
 #                     max = c.val
 #             else:
 #                 max = c.val
-#         if c[0].right:
-#             stack.append([c[0].right, c[1] + c[0].right.val])
-#         if c[0].left:
-#             stack.append([c[0].left, c[1] + c[0].left.val])
+#         if c.right:
+#             c.right.val += c.val
+#             stack.append(c.right)
+#         if c.left:
+#             c.left.val += c.val
+#             stack.append(c.left)
 #     return max
 
 
