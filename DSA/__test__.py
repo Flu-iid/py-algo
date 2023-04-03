@@ -1,1 +1,2 @@
-print([i for i in enumerate(range(0, 8, 2))])
+a = {1: 1, 2: 2, 3: 3, 4: 4}
+print(a)
