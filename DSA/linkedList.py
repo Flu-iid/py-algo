@@ -12,6 +12,7 @@ a.next = b
 b.next = c
 c.next = d
 
+
 # ## 1st try
 # def reverse_list(head,prev = None, tmp = None,index = 0):
 #   if head==None:
