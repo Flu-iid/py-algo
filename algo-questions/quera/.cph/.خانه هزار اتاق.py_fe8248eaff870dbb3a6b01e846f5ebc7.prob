@@ -1,0 +1,1 @@
+{"name":"Local: خانه هزار اتاق","url":"/home/flu/Project/py-algo/algo-questions/quera/خانه هزار اتاق.py","tests":[{"id":1689513175718,"input":"3 3\n2 1 67\n3 1 46\n3 2 75","output":"113"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/flu/Project/py-algo/algo-questions/quera/خانه هزار اتاق.py","group":"local","local":true}
