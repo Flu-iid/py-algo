@@ -1,3 +1,4 @@
+# traversal way. not optimal
 n, l = map(int, input().split())
 # d = []  # distances
 # r = []  # red lights
@@ -19,3 +20,6 @@ for step in range(1, l+1):
             result += r - cycle_mod
 
 print(result)
+
+
+# number theory way
