@@ -1,6 +1,6 @@
 def circle_eq(s1: str, s2: str):
     s2 += s2
-    reverse_s1 = "".join(reversed(s1))
+    reverse_s1 = s1[::-1]
     if s1 in s2 or reverse_s1 in s2:
         return True
     return False
