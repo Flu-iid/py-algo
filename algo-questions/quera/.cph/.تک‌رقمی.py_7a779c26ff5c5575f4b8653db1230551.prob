@@ -1,0 +1,1 @@
+{"name":"Local: تک‌رقمی","url":"/home/flu/Project/py-algo/algo-questions/quera/تک‌رقمی.py","tests":[{"id":1710093718850,"input":"14\n","output":"5\n"},{"id":1710093724662,"input":"123456\n","output":"3\n"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/flu/Project/py-algo/algo-questions/quera/تک‌رقمی.py","group":"local","local":true}
