@@ -1,0 +1,1 @@
+{"name":"Local: جمع براکت‌ها","url":"/home/flu/Project/py-algo/algo-competitions/codecup8-2024/جمع براکت‌ها.py","tests":[{"id":1708447522792,"input":"3\n2\n7.1561\n3\n2.71\n1\n3.14","output":"14\n8\n3"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/flu/Project/py-algo/algo-competitions/codecup8-2024/جمع براکت‌ها.py","group":"local","local":true}
