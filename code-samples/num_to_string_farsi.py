@@ -10,6 +10,15 @@ farsi_num_map = {
     8: "هشت",
     9: "نه",
     10: "ده",
+    11: "یازده",
+    12: "دوازده",
+    13: "سیزده",
+    14: "چهارده",
+    15: "پانزده",
+    16: "شانزده",
+    17: "هفده",
+    18: "هشزده",
+    19: "نوزده",
     20: "بیست",
     30: "سی",
     40: "چهل",
@@ -41,25 +50,36 @@ def number_to_farsi(n: str) -> str:
 
     result = []
     l = len(n)
-    for step in range(l):
-        c = n[l - 1 - step]
+    pass_index = False
 
-        if c == "0":
+    for step in range(l):
+        c = n[l - step - 1]
+        c_next = n[l - step - 2] if l - step - 2 >= 0 else ""
+        c_next_next = n[l - step - 3] if l - step - 3 >= 0 else ""
+
+        if pass_index:
+            pass_index = False
             continue
 
         match step % 3:
             case 1:
-                answer = farsi_num_map[int(c)*10]
+                answer = farsi_num_map[int(c)*10] if c != "0" else ""
             case 2:
-                answer = farsi_num_map[int(c)*100]
+                answer = farsi_num_map[int(c)*100] if c != "0" else ""
             case 0:
-                answer = farsi_num_map[int(c)]
-                if (step//3):
+                if c_next == "1":
+                    answer = farsi_num_map[int(c_next + c)]
+                    pass_index = True
+                else:
+                    answer = farsi_num_map[int(c)] if c != "0" else ""
+                if (step//3) and not (c == "0" and c_next == "0" and c_next_next == "0"):
                     answer += " " + farsi_num_map[10**(3*step//3)]
 
-        result.append(answer)
+        if answer:
+            result.append(answer)
 
     return " و ".join(result[::-1])
 
 
-print(number_to_farsi(input()))
+if __name__ == "__main__":
+    print(number_to_farsi(input()))
