@@ -60,27 +60,30 @@ graph: dict = {
 }
 
 
-def counter(start: int, path: str, count: int = 0, visited: list = []) -> int:
+def count_one_to_all(start: int, path: str, visited: list = []) -> int:
     if not path:
+        visited = []
         return 1
-    visited.append(start)
-    for c in path:
-        if not graph[start][c]:
-            return 0
-        for next_node in graph[start][c]:
-            count = 0
-            if next_node not in visited:
-                return counter(next_node, path[1:], count, visited)
+    c = path[0]
+    if not graph[start][c]:
+        visited = []
+        return 0
+    count = []
+    for next_node in graph[start][c]:
+        if next_node not in visited:
+            count.append(count_one_to_all(next_node, path[1:], visited+[start]))
+    return sum(count)
 
 
-def total_count(s: str):
-    for k in graph:
-        pass
+def count_all_to_all(s: str):
+    return sum([count_one_to_all(k, s) for k in graph])
+    # for k in graph:
+    #     print(k, count_one_to_all(k, s))
 
 
 if __name__ == "__main__":
-    a = input()
+    a = "RDL"
     if check_rule(a):
-        print(counter(1, a))
+        print(count_all_to_all(a))
     else:
         print(0)
