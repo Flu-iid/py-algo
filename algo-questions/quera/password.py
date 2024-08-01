@@ -13,40 +13,6 @@ def check_rule(s: str) -> bool:
     return True
 
 
-#
-#
-# def counter(s: str) -> int:
-#     l = len()
-#     if l == 1 or l == 2:
-#         return 9
-#     elif l == 3:
-#         if s[0] == [2]:
-#             return 3
-#         else:
-#             return 15
-#     elif l == 4:
-#         if s[0] != s[2]:
-#             return 3
-#         elif s[1] != s[3]:
-#             return 4
-#         else:
-#             return 1
-#     elif l == 5:
-#         if s[0] == s[-1] and s[1] == s[-2]:
-#             return 5
-#         elif s[0] == s[2] and s[1] == s[3]:
-#             return 2
-#         else:
-#             return 1
-#     elif l == 6:
-#         pass
-
-
-# 2 solvable ways
-# 1 brute force: with contradictions
-# 2 using graph theory
-
-
 graph: dict = {
     1: {"R": [2, 3], "D": [4, 7], "L": [], "U": []},
     2: {"R": [3], "D": [5, 8], "L": [1], "U": []},
@@ -69,10 +35,14 @@ def count_one_to_all(start: int, path: str, visited: list = []) -> int:
     count = []
     for i, next_node in enumerate(graph[start][c]):
         if next_node not in visited:
-            if i==1 and graph[start][c][0] not in visited:
-               count.append(count_one_to_all(next_node, path[1:], visited+[start, graph[start][c][0]]))
-            elif i==0: 
-                count.append(count_one_to_all(next_node, path[1:], visited+[start]))
+            if i == 1 and graph[start][c][0] not in visited:
+                count.append(
+                    count_one_to_all(
+                        next_node, path[1:], visited + [start, graph[start][c][0]]
+                    )
+                )
+            elif i == 0:
+                count.append(count_one_to_all(next_node, path[1:], visited + [start]))
     return sum(count)
 
 
