@@ -13,9 +13,6 @@ COLORS: dict[str, dict[str, int]] = {
 }
 
 
-"hello"
-
-
 def get_user_input(input_string: str) -> dict[str, int]:
     try:
         user_input = literal_eval(input_string)
