@@ -13,7 +13,7 @@ COLORS: dict[str, dict[str, int]] = {
 }
 
 
-def get_user_input(input_string: str) -> dict[str, int]:
+def get_user_input(input_string: str) -> dict[str, int] | None:
     try:
         user_input = literal_eval(input_string)
         # eval bug raises syntax error
